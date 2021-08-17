@@ -1,0 +1,414 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body{
+	background-color: #4e0c4e;
+}
+
+main{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.container{
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+/* HEADER STYLING BEGINS */
+header{
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	height: auto;
+	margin-bottom: 40px;
+}
+
+header h2{
+	color: rgb(234, 231, 238);
+	font-size: 35px;
+}
+
+/* HEADER STYLING ENDS */
+
+/* FORM STYLING BEGINS */
+#form{
+	text-align: center;
+	width: 500px;
+}
+
+#form input{
+	width: 75%;
+	border: none;
+	outline: none;
+	padding: 10px 15px;
+	border-radius: 5px;
+	background-color: rgb(194, 183, 209);
+	font-size: 23px;
+	color: #1f041f;
+	transition: background-color .3s, width .4s;
+}
+
+#form input:focus{
+	background-color: rgb(225, 217, 235);
+	width: 80%;
+}
+
+#form #submit{
+	font-size: 23px;
+	color: #1f041f;
+	padding: 9px 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	background-color: rgb(194, 183, 209);
+}
+
+/* #form #submit:focus{
+	background-color: rgb(225, 217, 235);
+} */
+
+.active-btn{
+	font-size: 25px;
+	background-color: rgb(225, 217, 235);
+}
+
+/* FORM STYLING ENDS */
+
+/* TO DO LIST STYLING BEGINS */
+
+.todo-ul{
+	list-style: none;
+	margin-top: 30px;
+	margin-left: 15px;
+	border-radius: 5px;
+	padding: 7px;
+	box-shadow: 0 0 3px 3px rgba(23, 19, 37, 0.9);
+
+	max-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.todo-ul::-webkit-scrollbar{
+	width: 7px;
+}
+.todo-ul::-webkit-scrollbar-thumb{
+	background: rgb(63, 47, 47);
+	border-radius: 5px;
+}
+.todo-ul::-webkit-scrollbar-track{
+	background: #999;
+	border-radius: 5px;
+}
+
+.todo-ul::-webkit-scrollbar-thumb:hover{
+	background-color: rgb(39, 19, 19);
+}
+
+.todo-ul .todo-li{
+	font-size: 20px;
+	color: whitesmoke;
+	margin: 10px 0;
+	background-color: rgb(194, 183, 209);
+	border-radius: 5px;
+	color: #413737;
+	word-wrap: break-word;
+	max-width: 100%;
+	padding: 7px 59px 7px 10px;
+	font-weight: 550;
+	position: relative;
+}
+
+.todo-ul .todo-li:hover{
+	background-color: rgb(225, 217, 235);
+}
+
+.todo-ul .todo-li .delete,
+.todo-ul .todo-li .info{
+	position: absolute;
+	display: inline-block;
+	cursor: pointer;
+	opacity: 0;
+	transition: all .4s;	
+	pointer-events: none;
+}
+
+.delete{
+	right: -20px;
+	top: 8px;
+	margin-right: 10px;
+	padding: 0px 3px;
+	border-radius: 100%;
+	font-size: 20px;
+}
+
+.info{
+	right: -20px;
+	top: 7px;
+}
+
+.todo-ul .todo-li .delete:hover{
+	color: whitesmoke;
+	cursor: pointer;
+	background-color: red;
+}
+
+.todo-ul .todo-li:hover .delete{
+	opacity: 1;
+	right: 25px;
+	top: 5px;
+	pointer-events: all;
+}
+
+.todo-ul .todo-li:hover .info{
+	opacity: 1;
+	right: 7px;
+	top: 7px;
+	pointer-events: all;
+}
+
+/* .fa .fa-paper-plane{
+	color: rgb(12, 12, 48);
+	font-size: 25px;
+} */
+
+/* TO DO LIST STYLING ENDS */
+
+/* DELETE POPUP BEGINS */
+
+.delete-popup{
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0,0,0, .7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* display: none; */
+}
+
+.popup{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 350px;
+	height: 250px;
+	background-color: #eee0e4;
+	box-shadow: 0 0 10px 8px rgba(0, 0, 0, .5);
+	border-radius: 5px;
+	flex-direction: column;
+	/* transform: translateY(-200%); */
+	/* transition: transform .4s cubic-bezier(0.55,-0.03, 0.29, 1.41);
+	transition-delay: .3s; */
+	z-index: 1;
+}
+
+.popup h3{
+	font-size: 25px;
+	color: #413737;
+}
+
+.option-box{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.option-box .cancel,
+.option-box .remove{
+	display: inline-block;
+	border: none;
+	background: none;
+	outline: none;
+	padding: 12px 15px;
+	font-size: 17px;
+	background-color: rgb(95, 95, 155);
+	color: whitesmoke;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color .4s;
+}
+
+.option-box .cancel{
+	margin-right: 50px;
+}
+
+.option-box .cancel:hover,
+.option-box .remove:hover{
+	background-color: rgb(43, 43, 105);
+}
+
+/* DELETE POPUP ENDS */
+
+/* INFO BOX BEGINS */
+
+.info-container{
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0,0,0, .7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* display: none; */
+}
+
+.info-box{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 350px;
+	height: 250px;
+	background-color: #eee0e4;
+	box-shadow: 0 0 10px 8px rgba(0, 0, 0, .5);
+	border-radius: 5px;
+	flex-direction: column;
+	/* transform: translateY(-200%); */
+	/* transition: transform .4s cubic-bezier(0.55,-0.03, 0.29, 1.41);
+	transition-delay: .3s; */
+	z-index: 1;
+}
+
+.info-list{
+	list-style: none;
+	width: 100%;
+	padding: 0 20px;
+	position: relative;
+}
+
+.info-list .info-item{
+	font-size: 20px;
+	color: #413737; 
+	position: relative;
+}
+
+.info-list .info-item:not(:last-child){
+	margin-bottom: 30px;
+}
+
+/* CHECK BOX */
+.check-complete-box{
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	width: 50px;
+	height: 18px;
+	background-color: rgb(209, 146, 157);
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.check-complete-box::after{
+	content: '';
+	display: inline-block;
+	position: absolute;
+	top: -2px;
+	left: 1px;
+	background-color: white;
+	width: 25px;
+	height: 22px;
+	border-radius: 100px;
+	transition: transform .4s;
+	cursor: pointer;
+}
+
+.check-complete-box.btn-active::after{
+	transform: translateX(23px);
+	background-color: rgb(42, 42, 90);
+}
+
+.close{
+	position: absolute;
+	font-size: 35px;
+	color: #413737;
+	cursor: pointer;
+	top: -40px;
+	right: 15px;
+	opacity: .7;
+	transition: opacity .4s;
+}
+
+.close:hover{
+	opacity: 1;
+}
+
+/* INFO BOX ENDS */
+
+/* EDIT MODEL */
+.edit-modal{
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0,0,0, .7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* display: none; */
+}
+
+.edit-modal .edit-popup{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 400px;
+	height: auto;
+	background-color: #eee0e4;
+	padding: 30px 0 30px 0px;
+	box-shadow: 0 0 10px 8px rgba(0, 0, 0, .5);
+	border-radius: 5px;
+	flex-direction: column;
+}
+
+.edit-modal .edit-popup .edit-input{
+	width: 90%;
+	border: none;
+	outline: none;
+	padding: 10px 15px;
+	border-radius: 5px;
+	background-color: rgb(194, 183, 209);
+	font-size: 23px;
+	color: #1f041f;
+	transition: background-color .3s, width .4s;
+}
+
+.edit-save{
+	width: 90%;
+	border: none;
+	outline: none;
+	padding: 10px 15px;
+	margin-top: 30px;
+	border-radius: 5px;
+	background-color: rgb(163, 108, 240);
+	color: whitesmoke;
+	font-size: 23px;
+	cursor: pointer;
+}
+
+.alert{
+	width: 90%;
+	padding: 10px 15px;
+	margin-top: 25px;
+	border-radius: 5px;
+	background-color: rgb(177, 69, 19);
+	color: whitesmoke;
+	display: inline-block;
+}
+
+
+
